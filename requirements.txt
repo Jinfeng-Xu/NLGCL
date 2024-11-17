@@ -1,0 +1,7 @@
+colorlog
+tensorboard
+six
+colorama
+pyyaml
+pandas
+hyperopt==0.2.5

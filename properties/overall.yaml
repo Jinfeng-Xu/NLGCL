@@ -1,0 +1,23 @@
+# EnvironmevjjSettings
+seed: 2023
+data_path: 'dataset/'           # (str) The path of input dataset.
+save_dataset: True             # (bool) Whether or not to save filtered dataset.
+save_dataloaders: True         # (bool) Whether or not save split dataloaders.
+
+# Training Settings
+epochs: 500                     # (int) The number of training epochs.
+train_batch_size: 4096          # (int) The training batch size.
+learner: adam                   # (str) The name of used optimizer.
+learning_rate: 0.001            # (float) Learning rate.
+stopping_step: 10               # (int) The threshold for validation-based early stopping.
+
+# Evaluation Settings
+eval_args:                      # (dict) 4 keys: group_by, order, split, and mode
+  split: {'RS':[0.8,0.1,0.1]}   # (dict) The splitting strategy ranging in ['RS','LS'].
+  group_by: user                # (str) The grouping strategy ranging in ['user', 'none'].
+  order: RO                     # (str) The ordering strategy ranging in ['RO', 'TO'].
+  mode: full                    # (str) The evaluation mode ranging in ['full','unixxx','popxxx','labeled'].
+metrics: ["Recall", "NDCG"]  # (list or str) Evaluation metrics.
+topk: [10, 20, 50]                      # (list or int or None) The value of k for topk evaluation metrics.
+valid_metric: NDCG@10            # (str) The evaluation metric for early stopping. 
+eval_batch_size: 4096000           # (int) The evaluation batch size.

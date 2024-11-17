@@ -1,0 +1,80 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue=".." />
+            <item index="1" class="java.lang.String" itemvalue="{{}}" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="JupyterPackageInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="31">
+            <item index="0" class="java.lang.String" itemvalue="Mako" />
+            <item index="1" class="java.lang.String" itemvalue="Flask" />
+            <item index="2" class="java.lang.String" itemvalue="greenlet" />
+            <item index="3" class="java.lang.String" itemvalue="brotlipy" />
+            <item index="4" class="java.lang.String" itemvalue="opencv-python" />
+            <item index="5" class="java.lang.String" itemvalue="torch" />
+            <item index="6" class="java.lang.String" itemvalue="pyasn1" />
+            <item index="7" class="java.lang.String" itemvalue="torchvision" />
+            <item index="8" class="java.lang.String" itemvalue="mkl-fft" />
+            <item index="9" class="java.lang.String" itemvalue="pyasn1-modules" />
+            <item index="10" class="java.lang.String" itemvalue="nb-conda" />
+            <item index="11" class="java.lang.String" itemvalue="tensorboard" />
+            <item index="12" class="java.lang.String" itemvalue="mpmath" />
+            <item index="13" class="java.lang.String" itemvalue="torchaudio" />
+            <item index="14" class="java.lang.String" itemvalue="webencodings" />
+            <item index="15" class="java.lang.String" itemvalue="mkl-service" />
+            <item index="16" class="java.lang.String" itemvalue="Pillow" />
+            <item index="17" class="java.lang.String" itemvalue="protobuf" />
+            <item index="18" class="java.lang.String" itemvalue="scipy" />
+            <item index="19" class="java.lang.String" itemvalue="networkx" />
+            <item index="20" class="java.lang.String" itemvalue="joblib" />
+            <item index="21" class="java.lang.String" itemvalue="threadpoolctl" />
+            <item index="22" class="java.lang.String" itemvalue="scikit-learn" />
+            <item index="23" class="java.lang.String" itemvalue="sklearn" />
+            <item index="24" class="java.lang.String" itemvalue="kiwisolver" />
+            <item index="25" class="java.lang.String" itemvalue="packaging" />
+            <item index="26" class="java.lang.String" itemvalue="cycler" />
+            <item index="27" class="java.lang.String" itemvalue="pandas" />
+            <item index="28" class="java.lang.String" itemvalue="fonttools" />
+            <item index="29" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="30" class="java.lang.String" itemvalue="pyparsing" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="W191" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N802" />
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="Queue" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
