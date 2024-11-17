@@ -1,4 +1,5 @@
-# L2CL: Embarrassingly Simple Layer-to-Layer Contrastive Learning for Graph Collaborative Filtering
+# NLGCL: A Contrastive Learning between Neighbor
+Layers for Graph Collaborative Filtering
 
 ## Requirements
 ```
