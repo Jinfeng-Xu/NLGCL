@@ -20,4 +20,4 @@ eval_args:                      # (dict) 4 keys: group_by, order, split, and mod
 metrics: ["Recall", "NDCG"]  # (list or str) Evaluation metrics.
 topk: [10, 20, 50]                      # (list or int or None) The value of k for topk evaluation metrics.
 valid_metric: NDCG@10            # (str) The evaluation metric for early stopping. 
-eval_batch_size: 4096000           # (int) The evaluation batch size.
+eval_batch_size: 4096           # (int) The evaluation batch size.

@@ -93,11 +93,7 @@ def objective_function(config_dict=None, config_file_list=None, saved=True):
     model = get_model(config['model'])(config, train_data.dataset).to(config['device'])
     logger.info(model)
 
-    from trainer import MyTrainer
-    if config['model'].lower() == "l2gcl":
-        trainer = MyTrainer(config, model)
-    else:
-        trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
+    trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
 
     # model training
     best_valid_score, best_valid_result = trainer.fit(

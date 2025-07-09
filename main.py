@@ -6,7 +6,6 @@ from recbole.utils import init_logger, init_seed, set_color
 from recbole_gnn.config import Config
 from recbole_gnn.utils import create_dataset, data_preparation, get_model, get_trainer
 
-from trainer import MyTrainer
 
 
 def run_single_model(args):
@@ -39,10 +38,7 @@ def run_single_model(args):
     logger.info(model)
 
     # trainer loading and initialization
-    if config['model'].lower() == "ncl":
-        trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
-    else:
-        trainer = MyTrainer(config, model)
+    trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
 
     # model training
     best_valid_score, best_valid_result = trainer.fit(
@@ -76,7 +72,7 @@ def objective_function(config_dict=None, config_file_list=None, saved=True):
     train_data, valid_data, test_data = data_preparation(config, dataset)
     init_seed(config['seed'], config['reproducibility'])
     model = get_model(config['model'])(config, train_data.dataset).to(config['device'])
-    trainer = MyTrainer(config, model)
+    trainer = Trainer(config, model)
     best_valid_score, best_valid_result = trainer.fit(train_data, valid_data, verbose=False, saved=saved)
     test_result = trainer.evaluate(test_data, load_best_model=saved)
 
