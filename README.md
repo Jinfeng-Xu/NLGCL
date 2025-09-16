@@ -25,10 +25,11 @@ python main.py
 If you find NLGCL useful in your research, please consider citing our [paper](https://arxiv.org/pdf/2507.07522).
 
 ```
-@article{xu2025nlgcl,
+@inproceedings{xu2025nlgcl,
   title={NLGCL: Naturally Existing Neighbor Layers Graph Contrastive Learning for Recommendation},
   author={Xu, Jinfeng and Chen, Zheyu and Yang, Shuo and Li, Jinze and Wang, Hewei and Wang, Wei and Hu, Xiping and Ngai, Edith},
-  journal={arXiv preprint arXiv:2507.07522},
+  booktitle={Proceedings of the Nineteenth ACM Conference on Recommender Systems},
+  pages={319--329},
   year={2025}
 }
 ```

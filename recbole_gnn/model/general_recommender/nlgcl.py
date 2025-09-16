@@ -106,7 +106,6 @@ class NLGCL(GeneralGraphRecommender):
                 positive=user_emb_0[users],
                 all_samples=user_emb_0[users]
             ) + 1e-6
-          
            
             cl_user_loss += pos_u - neg_u + 1e-6  # Small constant for stability
             
@@ -116,7 +115,6 @@ class NLGCL(GeneralGraphRecommender):
                 positive=item_emb_0[pos_items],
                 all_samples=item_emb_0[pos_items]
             ) + 1e-6
-
             
             # Update reference embeddings for next layer
             user_emb_0, item_emb_0 = user_emb_k, item_emb_k
