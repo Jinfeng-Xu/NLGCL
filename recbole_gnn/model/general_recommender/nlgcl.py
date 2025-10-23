@@ -106,8 +106,7 @@ class NLGCL(GeneralGraphRecommender):
                 positive=user_emb_0[users],
                 all_samples=user_emb_0[users]
             ) + 1e-6
-           
-            cl_user_loss += pos_u - neg_u + 1e-6  # Small constant for stability
+
             
             # Item-side contrastive loss
             cl_item_loss = self.InfoNCE(
