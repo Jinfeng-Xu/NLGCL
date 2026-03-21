@@ -104,33 +104,15 @@ class NLGCL(GeneralGraphRecommender):
         cl_i = 0
         for layer_idx in range(1, self.n_layers + 1):
             cur_embedding_u, cur_embedding_i = torch.split(embeddings_list[layer_idx], [self.n_users, self.n_items])
-            # user side
-            # pos_dis_u = self.InfoNCE(ego_embedding_u[user], cur_embedding_i[pos_item],
-            #                            ego_embedding_u[user])
-            # neg_dis_u = 0. * self.InfoNCE(ego_embedding_u[user], cur_embedding_i[neg_item],
-            #                            ego_embedding_u[user])
-            pos_dis_u = self.InfoNCE(cur_embedding_i[pos_item], ego_embedding_u[user],
+            cl_u = self.InfoNCE(cur_embedding_i[pos_item], ego_embedding_u[user],
                                      ego_embedding_u[user])
-            neg_dis_u = 0. * self.InfoNCE(cur_embedding_i[neg_item], ego_embedding_u[user],
-                                          ego_embedding_u[user])
-            cl_u = cl_u + self.pair_loss(pos_dis_u, neg_dis_u)
-            #item side
-            # pos_dis_i = self.InfoNCE(ego_embedding_i[pos_item], cur_embedding_u[user],
-            #                            ego_embedding_i[pos_item])
-            # neg_dis_i = 0. * self.InfoNCE(ego_embedding_i[neg_item], cur_embedding_u[user],
-            #                            ego_embedding_i[neg_item])
-            pos_dis_i = self.InfoNCE(cur_embedding_u[user], ego_embedding_i[pos_item],
+            cl_i = self.InfoNCE(cur_embedding_u[user], ego_embedding_i[pos_item],
                                      ego_embedding_i[pos_item])
-            neg_dis_i = 0. * self.InfoNCE(cur_embedding_u[user], ego_embedding_i[neg_item],
-                                          ego_embedding_i[neg_item])
-            cl_i = cl_i + self.pair_loss(pos_dis_i, neg_dis_i)
             # update embeddings
             ego_embedding_u, ego_embedding_i = cur_embedding_u, cur_embedding_i
+            
         return cl_u, cl_i
 
-    def pair_loss(self, pos, neg):
-        res = pos - neg + 1e-6
-        return res
 
     def calculate_loss(self, interaction):
         # clear the storage variable when training
