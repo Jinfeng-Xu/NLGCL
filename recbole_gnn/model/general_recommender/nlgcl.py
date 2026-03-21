@@ -104,9 +104,9 @@ class NLGCL(GeneralGraphRecommender):
         cl_i = 0
         for layer_idx in range(1, self.n_layers + 1):
             cur_embedding_u, cur_embedding_i = torch.split(embeddings_list[layer_idx], [self.n_users, self.n_items])
-            cl_u = self.InfoNCE(cur_embedding_i[pos_item], ego_embedding_u[user],
+            cl_u = cl_u + self.InfoNCE(cur_embedding_i[pos_item], ego_embedding_u[user],
                                      ego_embedding_u[user]) + 1e-6
-            cl_i = self.InfoNCE(cur_embedding_u[user], ego_embedding_i[pos_item],
+            cl_i = cl_i + self.InfoNCE(cur_embedding_u[user], ego_embedding_i[pos_item],
                                      ego_embedding_i[pos_item]) + 1e-6
             # update embeddings
             ego_embedding_u, ego_embedding_i = cur_embedding_u, cur_embedding_i
