@@ -5,13 +5,13 @@ n_layers: 2
 reg_weight: 1e-4
 
 #cl_temp: [0.1, 0.15, 0.2]
-cl_temp: 0.2
-alpha: 0.4
-cl_reg: 1e-5
+cl_temp: 0.1
+alpha: 0.6
+cl_reg: 5e-5
 #cl_reg: [1e-5, 5e-5, 1e-4]
 
 #hyper_parameters: ["cl_reg"]
 
 
 
-warm_up_step: 50
+warm_up_step: 30

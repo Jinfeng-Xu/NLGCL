@@ -6,10 +6,11 @@ from recbole.utils import init_logger, init_seed, set_color
 from recbole_gnn.config import Config
 from recbole_gnn.utils import create_dataset, data_preparation, get_model, get_trainer
 
+from trainer import MyTrainer
 
 
 def run_single_model(args):
-    # configurations initialization
+    # configurations initialization+
     config = Config(
         model=args.model,
         dataset=args.dataset,
@@ -38,7 +39,10 @@ def run_single_model(args):
     logger.info(model)
 
     # trainer loading and initialization
-    trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
+    if config['model'].lower() == "ncl":
+        trainer = get_trainer(config['MODEL_TYPE'], config['model'])(config, model)
+    else:
+        trainer = MyTrainer(config, model)
 
     # model training
     best_valid_score, best_valid_result = trainer.fit(
@@ -72,7 +76,7 @@ def objective_function(config_dict=None, config_file_list=None, saved=True):
     train_data, valid_data, test_data = data_preparation(config, dataset)
     init_seed(config['seed'], config['reproducibility'])
     model = get_model(config['model'])(config, train_data.dataset).to(config['device'])
-    trainer = Trainer(config, model)
+    trainer = MyTrainer(config, model)
     best_valid_score, best_valid_result = trainer.fit(train_data, valid_data, verbose=False, saved=saved)
     test_result = trainer.evaluate(test_data, load_best_model=saved)
 
@@ -88,9 +92,9 @@ def objective_function(config_dict=None, config_file_list=None, saved=True):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='NLGCL', help='name of models')
-    parser.add_argument('--dataset', type=str, default='yelp',
+    parser.add_argument('--dataset', type=str, default='alibaba',
                         help='The datasets can be:')
-    # 'yelp', 'pinterest', 'QB-video', 'alibaba'
+    # 'yelp', 'pinterest', 'tmall-click', 'tmall-buy', 'gowalla', 'amazon-books', 'amazon-kindle-store', 'QB-video', 'alibaba'
     parser.add_argument('--config_files', type=str, default='', help='External config file name.')
     args, _ = parser.parse_known_args()
 
@@ -100,7 +104,7 @@ if __name__ == '__main__':
     ]
     if args.config_files != '':
         args.config_file_list.extend(args.config_files.split(","))
-    if args.dataset in ['yelp', 'pinterest', 'QB-video', 'alibaba']:
+    if args.dataset in ['yelp', 'pinterest', 'tmall-click', 'tmall-buy', 'gowalla', 'amazon-books', 'amazon-kindle-store', 'QB-video', 'alibaba']:
         args.config_file_list.append(f'properties/{args.dataset}.yaml')
 
     run_single_model(args)
