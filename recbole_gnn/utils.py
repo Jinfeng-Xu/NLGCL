@@ -108,37 +108,7 @@ def data_preparation(config, dataset):
             - valid_data (AbstractDataLoader): The dataloader for validation.
             - test_data (AbstractDataLoader): The dataloader for testing.
     """
-    seq_module_path = '.'.join(['recbole_gnn.model.sequential_recommender', config['model'].lower()])
-    if importlib.util.find_spec(seq_module_path, __name__):
-        # Special condition for sequential models of RecBole-Graph
-        dataloaders = load_split_dataloaders(config)
-        if dataloaders is not None:
-            train_data, valid_data, test_data = dataloaders
-        else:
-            built_datasets = dataset.build()
-            train_dataset, valid_dataset, test_dataset = built_datasets
-            train_sampler, valid_sampler, test_sampler = create_samplers(config, dataset, built_datasets)
-
-            train_data = _get_customized_dataloader(config, 'train')(config, train_dataset, train_sampler, shuffle=True)
-            valid_data = _get_customized_dataloader(config, 'evaluation')(config, valid_dataset, valid_sampler, shuffle=False)
-            test_data = _get_customized_dataloader(config, 'evaluation')(config, test_dataset, test_sampler, shuffle=False)
-            if config['save_dataloaders']:
-                save_split_dataloaders(config, dataloaders=(train_data, valid_data, test_data))
-
-        logger = getLogger()
-        logger.info(
-            set_color('[Training]: ', 'pink') + set_color('train_batch_size', 'cyan') + ' = ' +
-            set_color(f'[{config["train_batch_size"]}]', 'yellow') + set_color(' negative sampling', 'cyan') + ': ' +
-            set_color(f'[{config["train_neg_sample_args"]}]', 'yellow')
-        )
-        logger.info(
-            set_color('[Evaluation]: ', 'pink') + set_color('eval_batch_size', 'cyan') + ' = ' +
-            set_color(f'[{config["eval_batch_size"]}]', 'yellow') + set_color(' eval_args', 'cyan') + ': ' +
-            set_color(f'[{config["eval_args"]}]', 'yellow')
-        )
-        return train_data, valid_data, test_data
-    else:
-        return recbole_data_preparation(config, dataset)
+    return recbole_data_preparation(config, dataset)
 
 
 def get_trainer(model_type, model_name):
