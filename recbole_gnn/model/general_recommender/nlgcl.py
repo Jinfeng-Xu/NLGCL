@@ -1,17 +1,3 @@
-# @Time   : 2022/3/8
-# @Author : Lanling Xu
-# @Email  : xulanling_sherry@163.com
-
-r"""
-LightGCN
-################################################
-Reference:
-    Xiangnan He et al. "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation." in SIGIR 2020.
-
-Reference code:
-    https://github.com/kuandeng/LightGCN
-"""
-
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -26,13 +12,6 @@ from recbole_gnn.model.layers import LightGCNConv
 
 
 class NLGCL(GeneralGraphRecommender):
-    r"""LightGCN is a GCN-based recommender model, implemented via PyG.
-    LightGCN includes only the most essential component in GCN — neighborhood aggregation — for
-    collaborative filtering. Specifically, LightGCN learns user and item embeddings by linearly 
-    propagating them on the user-item interaction graph, and uses the weighted sum of the embeddings
-    learned at all layers as the final embedding.
-    We implement the model following the original author with a pairwise training mode.
-    """
     input_type = InputType.PAIRWISE
 
     def __init__(self, config, dataset):
