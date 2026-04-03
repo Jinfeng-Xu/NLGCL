@@ -1,9 +1,8 @@
 # NLGCL: A Contrastive Learning between Neighbor Layers for Graph Collaborative Filtering
 
 ## News
-```
+
 An extended version [NLGCL+](https://github.com/Jinfeng-Xu/NLGCL-Plus) focused on extending to multimodal recommendation scenarios was accepted by TORS 2026.
-```
 
 ## Requirements
 ```
